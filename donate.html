@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Donate - Orphan Care</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        .donation-option.active {
+            border-color: #2A5F77;
+            background-color: #F0F7FA;
+        }
+        .impact-item:hover .impact-icon {
+            transform: scale(1.1);
+        }
+    </style>
+</head>
+<body class="font-sans">
+    <!-- Header (Same as index.html) -->
+    <header class="bg-blue-800 text-white shadow-lg">
+        <div class="container mx-auto px-4 py-3 flex justify-between items-center">
+            <div class="flex items-center space-x-2">
+                <i class="fas fa-heart text-yellow-400 text-2xl"></i>
+                <h1 class="text-2xl font-bold">Orphan Care</h1>
+            </div>
+            <nav class="hidden md:flex space-x-6">
+                <a href="index.html" class="hover:text-yellow-400">Home</a>
+                <a href="about.html" class="hover:text-yellow-400">About</a>
+                <a href="children.html" class="hover:text-yellow-400">Children</a>
+                <a href="donate.html" class="text-yellow-400">Donate</a>
+                <a href="contact.html" class="hover:text-yellow-400">Contact</a>
+            </nav>
+            <button class="md:hidden text-2xl">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+    </header>
+
+    <!-- Donation Hero -->
+    <section class="bg-blue-800 text-white py-20">
+        <div class="container mx-auto px-4 text-center">
+            <h2 class="text-4xl font-bold mb-4">Make a Difference</h2>
+            <p class="text-xl max-w-3xl mx-auto">Your donation provides shelter, education and hope to orphaned children</p>
+        </div>
+    </section>
+
+    <!-- Donation Form Section -->
+    <section class="py-16">
+        <div class="container mx-auto px-4">
+            <div class="max-w-4xl mx-auto">
+                <div class="bg-white rounded-lg shadow-lg overflow-hidden">
+                    <div class="md:flex">
+                        <!-- Donation Options -->
+                        <div class="md:w-1/2 p-8 bg-gray-50">
+                            <h3 class="text-2xl font-bold text-blue-800 mb-6">Donation Options</h3>
+                            
+                            <!-- Child Sponsorship (if coming from child page) -->
+                            <div id="child-sponsorship" class="hidden mb-6 p-4 border border-blue-200 rounded-lg bg-blue-50">
+                                <div class="flex items-center mb-3">
+                                    <img id="sponsored-child-img" src="" alt="Sponsored Child" class="w-16 h-16 rounded-full object-cover mr-4">
+                                    <div>
+                                        <h4 class="font-bold" id="sponsored-child-name">Sponsoring Aisha, 8</h4>
+                                        <p class="text-sm text-gray-600" id="sponsored-child-location">Nairobi, Kenya</p>
+                                    </div>
+                                </div>
+                                <button id="change-child" class="text-blue-800 text-sm hover:underline">
+                                    <i class="fas fa-exchange-alt mr-1"></i> Change Child
+                                </button>
+                            </div>
+
+                            <!-- Donation Type -->
+                            <div class="mb-6">
+                                <label class="block text-gray-700 font-semibold mb-2">I want to:</label>
+                                <div class="grid grid-cols-2 gap-4">
+                                    <button class="donation-option active py-3 px-4 border-2 rounded-lg text-center transition" data-type="one-time">
+                                        <i class="fas fa-gift text-2xl mb-2 text-blue-800"></i>
+                                        <p>Give Once</p>
+                                    </button>
+                                    <button class="donation-option py-3 px-4 border-2 border-gray-200 rounded-lg text-center transition" data-type="monthly">
+                                        <i class="fas fa-calendar-alt text-2xl mb-2 text-blue-800"></i>
+                                        <p>Monthly</p>
+                                    </button>
+                                </div>
+                            </div>
+
+                            <!-- Amount Selection -->
+                            <div class="mb-6">
+                                <label class="block text-gray-700 font-semibold mb-2">Amount (USD):</label>
+                                <div class="grid grid-cols-3 gap-3">
+                                    <button class="amount-option py-3 border rounded-lg font-bold transition" data-amount="50">$50</button>
+                                    <button class="amount-option py-3 border rounded-lg font-bold transition" data-amount="100">$100</button>
+                                    <button class="amount-option py-3 border rounded-lg font-bold transition" data-amount="200">$200</button>
+                                </div>
+                                <div class="mt-3 relative">
+                                    <span class="absolute left-3 top-3 text-gray-500">$</span>
+                                    <input type="number" id="custom-amount" placeholder="Other amount" class="w-full pl-8 pr-4 py-2 border rounded-lg focus:border-blue-500">
+                                </div>
+                            </div>
+
+                            <!-- Dedication -->
+                            <div class="mb-6">
+                                <label class="block text-gray-700 font-semibold mb-2">Dedication (optional):</label>
+                                <textarea id="dedication" placeholder="This donation is in honor of..." class="w-full px-4 py-2 border rounded-lg focus:border-blue-500"></textarea>
+                            </div>
+                        </div>
+
+                        <!-- Payment Details -->
+                        <div class="md:w-1/2 p-8">
+                            <h3 class="text-2xl font-bold text-blue-800 mb-6">Payment Details</h3>
+                            
+                            <div class="mb-6">
+                                <label class="block text-gray-700 font-semibold mb-2">Card Number</label>
+                                <div class="flex items-center border rounded-lg px-4 py-2">
+                                    <i class="fab fa-cc-visa text-2xl text-gray-400 mr-3"></i>
+                                    <i class="fab fa-cc-mastercard text-2xl text-gray-400 mr-3"></i>
+                                    <input type="text" placeholder="1234 5678 9012 3456" class="flex-grow outline-none" maxlength="19">
+                                </div>
+                            </div>
+
+                            <div class="grid grid-cols-2 gap-4 mb-6">
+                                <div>
+                                    <label class="block text-gray-700 font-semibold mb-2">Expiry Date</label>
+                                    <input type="text" placeholder="MM/YY" class="w-full px-4 py-2 border rounded-lg focus:border-blue-500">
+                                </div>
+                                <div>
+                                    <label class="block text-gray-700 font-semibold mb-2">CVV</label>
+                                    <input type="text" placeholder="123" class="w-full px-4 py-2 border rounded-lg focus:border-blue-500" maxlength="3">
+                                </div>
+                            </div>
+
+                            <div class="mb-6">
+                                <label class="block text-gray-700 font-semibold mb-2">Name on Card</label>
+                                <input type="text" placeholder="John Smith" class="w-full px-4 py-2 border rounded-lg focus:border-blue-500">
+                            </div>
+
+                            <div class="mb-6">
+                                <label class="block text-gray-700 font-semibold mb-2">Email</label>
+                                <input type="email" placeholder="your@email.com" class="w-full px-4 py-2 border rounded-lg focus:border-blue-500">
+                            </div>
+
+                            <button id="donate-button" class="w-full bg-yellow-500 hover:bg-yellow-600 text-blue-900 font-bold py-3 px-6 rounded-lg transition duration-300">
+                                Donate Securely
+                            </button>
+
+                            <p class="text-xs text-gray-500 mt-3">
+                                <i class="fas fa-lock mr-1"></i> Your donation is secure and encrypted
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Impact Section -->
+    <section class="py-16 bg-gray-100">
+        <div class="container mx-auto px-4">
+            <h3 class="text-3xl font-bold text-center mb-12 text-blue-800">Your Donation's Impact</h3>
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="impact-item bg-white p-8 rounded-lg shadow-md text-center transition hover:shadow-lg">
+                    <div class="impact-icon w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4 transition">
+                        <i class="fas fa-utensils text-blue-800 text-2xl"></i>
+                    </div>
+                    <h4 class="text-xl font-bold mb-2">$50</h4>
+                    <p class="text-gray-600">Provides nutritious meals for a child for one month</p>
+                </div>
+                <div class="impact-item bg-white p-8 rounded-lg shadow-md text-center transition hover:shadow-lg">
+                    <div class="impact-icon w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4 transition">
+                        <i class="fas fa-book text-blue-800 text-2xl"></i>
+                    </div>
+                    <h4 class="text-xl font-bold mb-2">$100</h4>
+                    <p class="text-gray-600">Covers school supplies and uniform for one child</p>
+                </div>
+                <div class="impact-item bg-white p-8 rounded-lg shadow-md text-center transition hover:shadow-lg">
+                    <div class="impact-icon w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4 transition">
+                        <i class="fas fa-home text-blue-800 text-2xl"></i>
+                    </div>
+                    <h4 class="text-xl font-bold mb-2">$200</h4>
+                    <p class="text-gray-600">Supports shelter costs for a child for one month</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section class="py-16 bg-blue-800 text-white">
+        <div class="container mx-auto px-4">
+            <h3 class="text-3xl font-bold text-center mb-12">What Donors Say</h3>
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="bg-blue-900 p-8 rounded-lg">
+                    <div class="flex items-center mb-4">
+                        <img src="https://images.pexels.com/photos/3769021/pexels-photo-3769021.jpeg" alt="Donor" class="w-12 h-12 rounded-full object-cover mr-4">
+                        <div>
+                            <h4 class="font-bold">Sarah Johnson</h4>
+                            <p class="text-blue-300 text-sm">Monthly Donor since 2018</p>
+                        </div>
+                    </div>
+                    <p>"Sponsoring Aisha has been incredibly rewarding. Seeing her progress reports and letters fills my heart with joy."</p>
+                </div>
+                <div class="bg-blue-900 p-8 rounded-lg">
+                    <div class="flex items-center mb-4">
+                        <img src="https://images.pexels.com/photos/3775534/pexels-photo-3775534.jpeg" alt="Donor" class="w-12 h-12 rounded-full object-cover mr-4">
+                        <div>
+                            <h4 class="font-bold">Michael Brown</h4>
+                            <p class="text-blue-300 text-sm">One-time Donor</p>
+                        </div>
+                    </div>
+                    <p>"The transparency in how funds are used gave me confidence to make a significant donation to build a new classroom."</p>
+                </div>
+                <div class="bg-blue-900 p-8 rounded-lg">
+                    <div class="flex items-center mb-4">
+                        <img src="https://images.pexels.com/photos/3777946/pexels-photo-3777946.jpeg" alt="Donor" class="w-12 h-12 rounded-full object-cover mr-4">
+                        <div>
+                            <h4 class="font-bold">Priya Patel</h4>
+                            <p class="text-blue-300 text-sm">Child Sponsor</p>
+                        </div>
+                    </div>
+                    <p>"Meeting David through video calls and seeing him thrive has been one of the most meaningful experiences of my life."</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer (Same as index.html) -->
+    <footer class="bg-blue-900 text-white py-12">
+        <div class="container mx-auto px-4">
+            <div class="grid md:grid-cols-4 gap-8">
+                <div>
+                    <h3 class="text-xl font-bold mb-4">Orphan Care</h3>
+                    <p>Providing love, shelter and education to orphaned children since 2010.</p>
+                </div>
+                <div>
+                    <h3 class="text-xl font-bold mb-4">Quick Links</h3>
+                    <ul class="space-y-2">
+                        <li><a href="index.html" class="hover:text-yellow-400">Home</a></li>
+                        <li><a href="about.html" class="hover:text-yellow-400">About Us</a></li>
+                        <li><a href="children.html" class="hover:text-yellow-400">Our Children</a></li>
+                        <li><a href="donate.html" class="hover:text-yellow-400">Donate</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-xl font-bold mb-4">Contact Us</h3>
+                    <p><i class="fas fa-map-marker-alt mr-2"></i> 123 Hope Street, Nairobi</p>
+                    <p class="my-2"><i class="fas fa-phone mr-2"></i> +254 700 123456</p>
+                    <p><i class="fas fa-envelope mr-2"></i> info@orphancare.org</p>
+                </div>
+                <div>
+                    <h3 class="text-xl font-bold mb-4">Newsletter</h3>
+                    <p>Subscribe to our newsletter for updates</p>
+                    <form class="mt-4">
+                        <input type="email" placeholder="Your Email" class="w-full px-4 py-2 rounded text-gray-800">
+                        <button type="submit" class="bg-yellow-500 hover:bg-yellow-600 text-blue-900 font-bold py-2 px-4 rounded mt-2 w-full">Subscribe</button>
+                    </form>
+                </div>
+            </div>
+            <div class="border-t border-blue-800 mt-8 pt-8 text-center">
+                <div class="flex justify-center space-x-4 mb-4">
+                    <a href="#" class="text-2xl hover:text-yellow-400"><i class="fab fa-facebook"></i></a>
+                    <a href="#" class="text-2xl hover:text-yellow-400"><i class="fab fa-twitter"></i></a>
+                    <a href="#" class="text-2xl hover:text-yellow-400"><i class="fab fa-instagram"></i></a>
+                </div>
+                <p>&copy; 2023 Orphan Care. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Handle donation type selection
+        document.querySelectorAll('.donation-option').forEach(option => {
+            option.addEventListener('click', function() {
+                document.querySelectorAll('.donation-option').forEach(opt => {
+                    opt.classList.remove('active');
+                    opt.classList.add('border-gray-200');
+                });
+                this.classList.add('active');
+                this.classList.remove('border-gray-200');
+            });
+        });
+
+        // Handle amount selection
+        document.querySelectorAll('.amount-option').forEach(option => {
+            option.addEventListener('click', function() {
+                document.querySelectorAll('.amount-option').forEach(opt => {
+                    opt.classList.remove('bg-blue-800', 'text-white');
+                    opt.classList.add('border-gray-200');
+                });
+                this.classList.add('bg-blue-800', 'text-white');
+                this.classList.remove('border-gray-200');
+                document.getElementById('custom-amount').value = '';
+            });
+        });
+
+        // Handle custom amount input
+        document.getElementById('custom-amount').addEventListener('input', function() {
+            document.querySelectorAll('.amount-option').forEach(opt => {
+                opt.classList.remove('bg-blue-800', 'text-white');
+                opt.classList.add('border-gray-200');
+            });
+        });
+
+        // Check if coming from child sponsorship
+        document.addEventListener('DOMContentLoaded', function() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const childId = urlParams.get('child');
+            
+            if (childId) {
+                // In a real app, we'd fetch child data from database
+                // For demo, we'll use sample data
+                const sponsoredChild = {
+                    id: childId,
+                    name: "Aisha",
+                    age: 8,
+                    location: "Nairobi, Kenya",
+                    img: "https://images.pexels.com/photos/35537/child-children-girl-happy.jpg"
+                };
+                
+                document.getElementById('child-sponsorship').classList.remove('hidden');
+                document.getElementById('sponsored-child-img').src = sponsoredChild.img;
+                document.getElementById('sponsored-child-name').textContent = `Sponsoring ${sponsoredChild.name}, ${sponsoredChild.age}`;
+                document.getElementById('sponsored-child-location').textContent = sponsoredChild.location;
+            }
+        });
+
+        // Change child button
+        document.getElementById('change-child')?.addEventListener('click', function() {
+            window.location.href = 'children.html';
+        });
+
+        // Form submission
+        document.getElementById('donate-button')?.addEventListener('click', function() {
+            alert('Thank you for your donation! In a real application, this would process your payment.');
+        });
+    </script>
+</body>
+</html>
