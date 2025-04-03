@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Photo Gallery - Orphan Care</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        .gallery-item {
+            break-inside: avoid;
+            margin-bottom: 1rem;
+        }
+        .lightbox {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.9);
+            z-index: 1000;
+            align-items: center;
+            justify-content: center;
+        }
+        .lightbox-content {
+            max-width: 90%;
+            max-height: 90%;
+        }
+        .lightbox-caption {
+            color: white;
+            text-align: center;
+            padding: 1rem;
+        }
+    </style>
+</head>
+<body class="font-sans">
+    <!-- Header (Same as index.html) -->
+    <header class="bg-blue-800 text-white shadow-lg">
+        <div class="container mx-auto px-4 py-3 flex justify-between items-center">
+            <div class="flex items-center space-x-2">
+                <i class="fas fa-heart text-yellow-400 text-2xl"></i>
+                <h1 class="text-2xl font-bold">Orphan Care</h1>
+            </div>
+            <nav class="hidden md:flex space-x-6">
+                <a href="index.html" class="hover:text-yellow-400">Home</a>
+                <a href="about.html" class="hover:text-yellow-400">About</a>
+                <a href="children.html" class="hover:text-yellow-400">Children</a>
+                <a href="donate.html" class="hover:text-yellow-400">Donate</a>
+                <a href="contact.html" class="hover:text-yellow-400">Contact</a>
+                <a href="gallery.html" class="text-yellow-400">Gallery</a>
+            </nav>
+            <button class="md:hidden text-2xl">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+    </header>
+
+    <!-- Gallery Hero -->
+    <section class="bg-blue-800 text-white py-20">
+        <div class="container mx-auto px-4 text-center">
+            <h2 class="text-4xl font-bold mb-4">Our Photo Gallery</h2>
+            <p class="text-xl max-w-3xl mx-auto">Moments of joy, learning and growth in our children's lives</p>
+        </div>
+    </section>
+
+    <!-- Gallery Filters -->
+    <section class="py-8 bg-gray-100">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-wrap justify-center gap-2">
+                <button class="gallery-filter px-4 py-2 rounded-full bg-blue-800 text-white font-semibold" data-filter="all">All Photos</button>
+                <button class="gallery-filter px-4 py-2 rounded-full border border-blue-800 text-blue-800 font-semibold hover:bg-blue-800 hover:text-white transition" data-filter="daily-life">Daily Life</button>
+                <button class="gallery-filter px-4 py-2 rounded-full border border-blue-800 text-blue-800 font-semibold hover:bg-blue-800 hover:text-white transition" data-filter="education">Education</button>
+                <button class="gallery-filter px-4 py-2 rounded-full border border-blue-800 text-blue-800 font-semibold hover:bg-blue-800 hover:text-white transition" data-filter="events">Events</button>
+                <button class="gallery-filter px-4 py-2 rounded-full border border-blue-800 text-blue-800 font-semibold hover:bg-blue-800 hover:text-white transition" data-filter="success">Success Stories</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gallery Grid -->
+    <section class="py-8">
+        <div class="container mx-auto px-4">
+            <div class="columns-1 md:columns-2 lg:columns-3 gap-4">
+                <!-- Daily Life -->
+                <div class="gallery-item" data-category="daily-life">
+                    <div class="bg-white rounded-lg shadow-md overflow-hidden">
+                        <img src="https://images.pexels.com/photos/159823/kids-girl-pencil-drawing-159823.jpeg" alt="Child drawing" class="w-full h-auto cursor-pointer gallery-image" data-caption="Aisha enjoys her art class every Wednesday">
+                        <div class="p-4">
+                            <p class="text-gray-600"><i class="fas fa-calendar-day text-blue-800 mr-2"></i>Daily Life</p>
+                            <p class="mt-2">Aisha enjoys her art class every Wednesday</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Education -->
+                <div class="gallery-item" data-category="education">
+                    <div class="bg-white rounded-lg shadow-md overflow-hidden">
+                        <img src="https://images.pexels.com/photos/4145153/pexels-photo-4145153.jpeg" alt="Children in classroom" class="w-full h-auto cursor-pointer gallery-image" data-caption="Our students participating in a science experiment">
+                        <div class="p-4">
+                            <p class="text-gray-600"><i class="fas fa-book text-blue-800 mr-2"></i>Education</p>
+                            <p class="mt-2">Our students participating in a science experiment</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Events -->
+                <div class="gallery-item" data-category="events">
+                    <div class="bg-white rounded-lg shadow-md overflow-hidden">
+                        <img src="https://images.pexels.com/photos/976866/pexels-photo-976866.jpeg" alt="Birthday celebration" class="w-full h-auto cursor-pointer gallery-image" data-caption="Celebrating David's 7th birthday with cake and games">
+                        <div class="p-4">
+                            <p class="text-gray-600"><i class="fas fa-calendar-alt text-blue-800 mr-2"></i>Events</p>
+                            <p class="mt-2">Celebrating David's 7th birthday with cake and games</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Success Stories -->
+                <div class="gallery-item" data-category="success">
+                    <div class="bg-white rounded-lg shadow-md overflow-hidden">
+                        <img src="https://images.pexels.com/photos/3771086/pexels-photo-3771086.jpeg" alt="Graduation" class="w-full h-auto cursor-pointer gallery-image" data-caption="Sophia graduating primary school with honors">
+                        <div class="p-4">
+                            <p class="text-gray-600"><i class="fas fa-trophy text-blue-800 mr-2"></i>Success Stories</p>
+                            <p class="mt-2">Sophia graduating primary school with honors</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Daily Life -->
+                <div class="gallery-item" data-category="daily-life">
+                    <div class="bg-white rounded-lg shadow-md overflow-hidden">
+                        <img src="https://images.pexels.com/photos/162076/friends-kids-children-fun-162076.jpeg" alt="Children playing" class="w-full h-auto cursor-pointer gallery-image" data-caption="Playtime in our Nairobi home's courtyard">
+                        <div class="p-4">
+                            <p class="text-gray-600"><i class="fas fa-calendar-day text-blue-800 mr-2"></i>Daily Life</p>
+                            <p class="mt-2">Playtime in our Nairobi home's courtyard</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Education -->
+                <div class="gallery-item" data-category="education">
+                    <div class="bg-white rounded-lg shadow-md overflow-hidden">
+                        <img src="https://images.pexels.com/photos/4145347/pexels-photo-4145347.jpeg" alt="Computer class" class="w-full h-auto cursor-pointer gallery-image" data-caption="Learning computer skills in our digital lab">
+                        <div class="p-4">
+                            <p class="text-gray-600"><i class="fas fa-book text-blue-800 mr-2"></i>Education</p>
+                            <p class="mt-2">Learning computer skills in our digital lab</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Events -->
+                <div class="gallery-item" data-category="events">
+                    <div class="bg-white rounded-lg shadow-md overflow-hidden">
+                        <img src="https://images.pexels.com/photos/2422290/pexels-photo-2422290.jpeg" alt="Christmas party" class="w-full h-auto cursor-pointer gallery-image" data-caption="Annual Christmas party with gifts for all children">
+                        <div class="p-4">
+                            <p class="text-gray-600"><i class="fas fa-calendar-alt text-blue-800 mr-2"></i>Events</p>
+                            <p class="mt-2">Annual Christmas party with gifts for all children</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Success Stories -->
+                <div class="gallery-item" data-category="success">
+                    <div class="bg-white rounded-lg shadow-md overflow-hidden">
+                        <img src="https://images.pexels.com/photos/3768146/pexels-photo-3768146.jpeg" alt="University acceptance" class="w-full h-auto cursor-pointer gallery-image" data-caption="Emmanuel receiving his university acceptance letter">
+                        <div class="p-4">
+                            <p class="text-gray-600"><i class="fas fa-trophy text-blue-800 mr-2"></i>Success Stories</p>
+                            <p class="mt-2">Emmanuel receiving his university acceptance letter</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Daily Life -->
+                <div class="gallery-item" data-category="daily-life">
+                    <div class="bg-white rounded-lg shadow-md overflow-hidden">
+                        <img src="https://images.pexels.com/photos/50692/brothers-family-siblings-boys-50692.jpeg" alt="Siblings" class="w-full h-auto cursor-pointer gallery-image" data-caption="Brothers Joseph and David doing homework together">
+                        <div class="p-4">
+                            <p class="text-gray-600"><i class="fas fa-calendar-day text-blue-800 mr-2"></i>Daily Life</p>
+                            <p class="mt-2">Brothers Joseph and David doing homework together</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Lightbox -->
+    <div class="lightbox" id="lightbox">
+        <div class="lightbox-content">
+            <img id="lightbox-image" src="" alt="" class="max-w-full max-h-full">
+            <div class="lightbox-caption" id="lightbox-caption"></div>
+        </div>
+        <button class="absolute top-4 right-4 text-white text-4xl" id="close-lightbox">&times;</button>
+        <button class="absolute left-4 text-white text-4xl" id="prev-image"><i class="fas fa-chevron-left"></i></button>
+        <button class="absolute right-4 text-white text-4xl" id="next-image"><i class="fas fa-chevron-right"></i></button>
+    </div>
+
+    <!-- Footer (Same as index.html) -->
+    <footer class="bg-blue-900 text-white py-12">
+        <div class="container mx-auto px-4">
+            <div class="grid md:grid-cols-4 gap-8">
+                <div>
+                    <h3 class="text-xl font-bold mb-4">Orphan Care</h3>
+                    <p>Providing love, shelter and education to orphaned children since 2010.</p>
+                </div>
+                <div>
+                    <h3 class="text-xl font-bold mb-4">Quick Links</h3>
+                    <ul class="space-y-2">
+                        <li><a href="index.html" class="hover:text-yellow-400">Home</a></li>
+                        <li><a href="about.html" class="hover:text-yellow-400">About Us</a></li>
+                        <li><a href="children.html" class="hover:text-yellow-400">Our Children</a></li>
+                        <li><a href="donate.html" class="hover:text-yellow-400">Donate</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-xl font-bold mb-4">Contact Us</h3>
+                    <p><i class="fas fa-map-marker-alt mr-2"></i> 123 Hope Street, Nairobi</p>
+                    <p class="my-2"><i class="fas fa-phone mr-2"></i> +254 700 123456</p>
+                    <p><i class="fas fa-envelope mr-2"></i> info@orphancare.org</p>
+                </div>
+                <div>
+                    <h3 class="text-xl font-bold mb-4">Newsletter</h3>
+                    <p>Subscribe to our newsletter for updates</p>
+                    <form class="mt-4">
+                        <input type="email" placeholder="Your Email" class="w-full px-4 py-2 rounded text-gray-800">
+                        <button type="submit" class="bg-yellow-500 hover:bg-yellow-600 text-blue-900 font-bold py-2 px-4 rounded mt-2 w-full">Subscribe</button>
+                    </form>
+                </div>
+            </div>
+            <div class="border-t border-blue-800 mt-8 pt-8 text-center">
+                <div class="flex justify-center space-x-4 mb-4">
+                    <a href="#" class="text-2xl hover:text-yellow-400"><i class="fab fa-facebook"></i></a>
+                    <a href="#" class="text-2xl hover:text-yellow-400"><i class="fab fa-twitter"></i></a>
+                    <a href="#" class="text-2xl hover:text-yellow-400"><i class="fab fa-instagram"></i></a>
+                </div>
+                <p>&copy; 2023 Orphan Care. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Gallery filter functionality
+        document.querySelectorAll('.gallery-filter').forEach(button => {
+            button.addEventListener('click', function() {
+                // Update active button
+                document.querySelectorAll('.gallery-filter').forEach(btn => {
+                    btn.classList.remove('bg-blue-800', 'text-white');
+                    btn.classList.add('border', 'border-blue-800', 'text-blue-800');
+                });
+                this.classList.add('bg-blue-800', 'text-white');
+                this.classList.remove('border', 'border-blue-800', 'text-blue-800');
+                
+                // Filter items
+                const filter = this.dataset.filter;
+                document.querySelectorAll('.gallery-item').forEach(item => {
+                    if (filter === 'all' || item.dataset.category === filter) {
+                        item.style.display = 'block';
+                    } else {
+                        item.style.display = 'none';
+                    }
+                });
+            });
+        });
+
+        // Lightbox functionality
+        const lightbox = document.getElementById('lightbox');
+        const lightboxImg = document.getElementById('lightbox-image');
+        const lightboxCaption = document.getElementById('lightbox-caption');
+        const closeBtn = document.getElementById('close-lightbox');
+        const prevBtn = document.getElementById('prev-image');
+        const nextBtn = document.getElementById('next-image');
+        
+        let currentImageIndex = 0;
+        const images = Array.from(document.querySelectorAll('.gallery-image'));
+        const imageData = images.map(img => ({
+            src: img.src,
+            caption: img.dataset.caption
+        }));
+
+        // Open lightbox
+        images.forEach((img, index) => {
+            img.addEventListener('click', () => {
+                currentImageIndex = index;
+                updateLightbox();
+                lightbox.style.display = 'flex';
+                document.body.style.overflow = 'hidden';
+            });
+        });
+
+        // Close lightbox
+        closeBtn.addEventListener('click', () => {
+            lightbox.style.display = 'none';
+            document.body.style.overflow = 'auto';
+        });
+
+        // Navigation
+        prevBtn.addEventListener('click', () => {
+            currentImageIndex = (currentImageIndex - 1 + imageData.length) % imageData.length;
+            updateLightbox();
+        });
+
+        nextBtn.addEventListener('click', () => {
+            currentImageIndex = (currentImageIndex + 1) % imageData.length;
+            updateLightbox();
+        });
+
+        // Keyboard navigation
+        document.addEventListener('keydown', (e) => {
+            if (lightbox.style.display === 'flex') {
+                if (e.key === 'Escape') {
+                    lightbox.style.display = 'none';
+                    document.body.style.overflow = 'auto';
+                } else if (e.key === 'ArrowLeft') {
+                    currentImageIndex = (currentImageIndex - 1 + imageData.length) % imageData.length;
+                    updateLightbox();
+                } else if (e.key === 'ArrowRight') {
+                    currentImageIndex = (currentImageIndex + 1) % imageData.length;
+                    updateLightbox();
+                }
+            }
+        });
+
+        function updateLightbox() {
+            lightboxImg.src = imageData[currentImageIndex].src;
+            lightboxCaption.textContent = imageData[currentImageIndex].caption;
+        }
+    </script>
+</body>
+</html>
