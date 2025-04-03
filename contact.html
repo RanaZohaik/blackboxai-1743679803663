@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us - Orphan Care</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        .map-container {
+            height: 400px;
+        }
+        .contact-icon {
+            transition: all 0.3s ease;
+        }
+        .contact-card:hover .contact-icon {
+            transform: translateY(-5px);
+            color: #2A5F77;
+        }
+    </style>
+</head>
+<body class="font-sans">
+    <!-- Header (Same as index.html) -->
+    <header class="bg-blue-800 text-white shadow-lg">
+        <div class="container mx-auto px-4 py-3 flex justify-between items-center">
+            <div class="flex items-center space-x-2">
+                <i class="fas fa-heart text-yellow-400 text-2xl"></i>
+                <h1 class="text-2xl font-bold">Orphan Care</h1>
+            </div>
+            <nav class="hidden md:flex space-x-6">
+                <a href="index.html" class="hover:text-yellow-400">Home</a>
+                <a href="about.html" class="hover:text-yellow-400">About</a>
+                <a href="children.html" class="hover:text-yellow-400">Children</a>
+                <a href="donate.html" class="hover:text-yellow-400">Donate</a>
+                <a href="contact.html" class="text-yellow-400">Contact</a>
+            </nav>
+            <button class="md:hidden text-2xl">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+    </header>
+
+    <!-- Contact Hero -->
+    <section class="bg-blue-800 text-white py-20">
+        <div class="container mx-auto px-4 text-center">
+            <h2 class="text-4xl font-bold mb-4">Get In Touch</h2>
+            <p class="text-xl max-w-3xl mx-auto">We'd love to hear from you - whether you have questions or want to get involved</p>
+        </div>
+    </section>
+
+    <!-- Contact Cards -->
+    <section class="py-16">
+        <div class="container mx-auto px-4">
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="contact-card bg-white p-8 rounded-lg shadow-md text-center">
+                    <div class="contact-icon w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4 text-blue-800 text-2xl">
+                        <i class="fas fa-map-marker-alt"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2">Our Location</h3>
+                    <p class="text-gray-600">123 Hope Street<br>Nairobi, Kenya</p>
+                </div>
+                <div class="contact-card bg-white p-8 rounded-lg shadow-md text-center">
+                    <div class="contact-icon w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4 text-blue-800 text-2xl">
+                        <i class="fas fa-phone"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2">Call Us</h3>
+                    <p class="text-gray-600">+254 700 123456<br>Mon-Fri, 8am-5pm EAT</p>
+                </div>
+                <div class="contact-card bg-white p-8 rounded-lg shadow-md text-center">
+                    <div class="contact-icon w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4 text-blue-800 text-2xl">
+                        <i class="fas fa-envelope"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2">Email Us</h3>
+                    <p class="text-gray-600">info@orphancare.org<br>We reply within 24 hours</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Form & Map -->
+    <section class="py-8 bg-gray-100">
+        <div class="container mx-auto px-4">
+            <div class="bg-white rounded-lg shadow-lg overflow-hidden">
+                <div class="md:flex">
+                    <!-- Contact Form -->
+                    <div class="md:w-1/2 p-8">
+                        <h3 class="text-2xl font-bold text-blue-800 mb-6">Send Us a Message</h3>
+                        <form id="contact-form">
+                            <div class="mb-4">
+                                <label for="name" class="block text-gray-700 font-semibold mb-2">Your Name</label>
+                                <input type="text" id="name" placeholder="John Smith" class="w-full px-4 py-2 border rounded-lg focus:border-blue-500" required>
+                            </div>
+                            <div class="mb-4">
+                                <label for="email" class="block text-gray-700 font-semibold mb-2">Email Address</label>
+                                <input type="email" id="email" placeholder="your@email.com" class="w-full px-4 py-2 border rounded-lg focus:border-blue-500" required>
+                            </div>
+                            <div class="mb-4">
+                                <label for="subject" class="block text-gray-700 font-semibold mb-2">Subject</label>
+                                <select id="subject" class="w-full px-4 py-2 border rounded-lg focus:border-blue-500" required>
+                                    <option value="" disabled selected>Select a subject</option>
+                                    <option value="donation">Donation Inquiry</option>
+                                    <option value="sponsorship">Child Sponsorship</option>
+                                    <option value="volunteer">Volunteering</option>
+                                    <option value="other">Other</option>
+                                </select>
+                            </div>
+                            <div class="mb-6">
+                                <label for="message" class="block text-gray-700 font-semibold mb-2">Your Message</label>
+                                <textarea id="message" rows="4" placeholder="Type your message here..." class="w-full px-4 py-2 border rounded-lg focus:border-blue-500" required></textarea>
+                            </div>
+                            <button type="submit" class="w-full bg-blue-800 hover:bg-blue-900 text-white font-bold py-3 px-6 rounded-lg transition duration-300">
+                                Send Message
+                            </button>
+                        </form>
+                    </div>
+                    
+                    <!-- Map -->
+                    <div class="md:w-1/2">
+                        <div class="map-container">
+                            <!-- In a real implementation, this would be an embedded Google Map -->
+                            <div class="h-full w-full bg-gray-200 flex items-center justify-center">
+                                <div class="text-center p-8">
+                                    <i class="fas fa-map-marked-alt text-5xl text-blue-800 mb-4"></i>
+                                    <h4 class="text-xl font-bold mb-2">Our Location</h4>
+                                    <p class="mb-4">123 Hope Street, Nairobi, Kenya</p>
+                                    <button class="bg-blue-800 hover:bg-blue-900 text-white font-bold py-2 px-4 rounded transition duration-300">
+                                        Get Directions
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="py-16">
+        <div class="container mx-auto px-4">
+            <h3 class="text-3xl font-bold text-center mb-12 text-blue-800">Frequently Asked Questions</h3>
+            <div class="max-w-3xl mx-auto">
+                <!-- FAQ Item 1 -->
+                <div class="mb-4 border-b border-gray-200 pb-4">
+                    <button class="faq-question flex justify-between items-center w-full text-left font-semibold text-lg">
+                        How can I sponsor a child?
+                        <i class="fas fa-chevron-down transition-transform duration-300"></i>
+                    </button>
+                    <div class="faq-answer mt-2 text-gray-600 hidden">
+                        You can sponsor a child by visiting our <a href="children.html" class="text-blue-800 hover:underline">Children in Need</a> page, selecting a child you'd like to support, and clicking the "Sponsor" button. This will guide you through the sponsorship process.
+                    </div>
+                </div>
+                <!-- FAQ Item 2 -->
+                <div class="mb-4 border-b border-gray-200 pb-4">
+                    <button class="faq-question flex justify-between items-center w-full text-left font-semibold text-lg">
+                        What payment methods do you accept?
+                        <i class="fas fa-chevron-down transition-transform duration-300"></i>
+                    </button>
+                    <div class="faq-answer mt-2 text-gray-600 hidden">
+                        We accept all major credit cards (Visa, MasterCard, American Express), PayPal, and bank transfers. Recurring donations can be set up through credit card or direct debit.
+                    </div>
+                </div>
+                <!-- FAQ Item 3 -->
+                <div class="mb-4 border-b border-gray-200 pb-4">
+                    <button class="faq-question flex justify-between items-center w-full text-left font-semibold text-lg">
+                        Can I visit the children's homes?
+                        <i class="fas fa-chevron-down transition-transform duration-300"></i>
+                    </button>
+                    <div class="faq-answer mt-2 text-gray-600 hidden">
+                        Yes! We welcome visitors to our homes with prior arrangement. Please contact us at least 2 weeks in advance to schedule a visit. All visitors must complete a background check for the safety of our children.
+                    </div>
+                </div>
+                <!-- FAQ Item 4 -->
+                <div class="mb-4 border-b border-gray-200 pb-4">
+                    <button class="faq-question flex justify-between items-center w-full text-left font-semibold text-lg">
+                        How are donations used?
+                        <i class="fas fa-chevron-down transition-transform duration-300"></i>
+                    </button>
+                    <div class="faq-answer mt-2 text-gray-600 hidden">
+                        85% of donations go directly to program services (shelter, food, education, healthcare), 10% to administrative costs, and 5% to fundraising. We publish annual financial reports on our website for full transparency.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer (Same as index.html) -->
+    <footer class="bg-blue-900 text-white py-12">
+        <div class="container mx-auto px-4">
+            <div class="grid md:grid-cols-4 gap-8">
+                <div>
+                    <h3 class="text-xl font-bold mb-4">Orphan Care</h3>
+                    <p>Providing love, shelter and education to orphaned children since 2010.</p>
+                </div>
+                <div>
+                    <h3 class="text-xl font-bold mb-4">Quick Links</h3>
+                    <ul class="space-y-2">
+                        <li><a href="index.html" class="hover:text-yellow-400">Home</a></li>
+                        <li><a href="about.html" class="hover:text-yellow-400">About Us</a></li>
+                        <li><a href="children.html" class="hover:text-yellow-400">Our Children</a></li>
+                        <li><a href="donate.html" class="hover:text-yellow-400">Donate</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-xl font-bold mb-4">Contact Us</h3>
+                    <p><i class="fas fa-map-marker-alt mr-2"></i> 123 Hope Street, Nairobi</p>
+                    <p class="my-2"><i class="fas fa-phone mr-2"></i> +254 700 123456</p>
+                    <p><i class="fas fa-envelope mr-2"></i> info@orphancare.org</p>
+                </div>
+                <div>
+                    <h3 class="text-xl font-bold mb-4">Newsletter</h3>
+                    <p>Subscribe to our newsletter for updates</p>
+                    <form class="mt-4">
+                        <input type="email" placeholder="Your Email" class="w-full px-4 py-2 rounded text-gray-800">
+                        <button type="submit" class="bg-yellow-500 hover:bg-yellow-600 text-blue-900 font-bold py-2 px-4 rounded mt-2 w-full">Subscribe</button>
+                    </form>
+                </div>
+            </div>
+            <div class="border-t border-blue-800 mt-8 pt-8 text-center">
+                <div class="flex justify-center space-x-4 mb-4">
+                    <a href="#" class="text-2xl hover:text-yellow-400"><i class="fab fa-facebook"></i></a>
+                    <a href="#" class="text-2xl hover:text-yellow-400"><i class="fab fa-twitter"></i></a>
+                    <a href="#" class="text-2xl hover:text-yellow-400"><i class="fab fa-instagram"></i></a>
+                </div>
+                <p>&copy; 2023 Orphan Care. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Form submission
+        document.getElementById('contact-form')?.addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Thank you for your message! In a real application, this would send your message to our team.');
+            this.reset();
+        });
+
+        // FAQ toggle functionality
+        document.querySelectorAll('.faq-question').forEach(question => {
+            question.addEventListener('click', function() {
+                const answer = this.nextElementSibling;
+                const icon = this.querySelector('i');
+                
+                answer.classList.toggle('hidden');
+                icon.classList.toggle('transform-rotate-180');
+            });
+        });
+
+        // In a real implementation, this would initialize Google Maps
+        function initMap() {
+            console.log('Map would be initialized here with Google Maps API');
+        }
+    </script>
+</body>
+</html>
